@@ -1,4 +1,5 @@
 # keycloak-event-publisher
+Keycloak event listener provider implementation with multiple sender options.
 
 ### Features
 * Multiple Publisher types
@@ -14,5 +15,9 @@
 * Serialize queue events to a file or database (TODO)
 
 ## Build
+`mvn clean package`
 
 ### Build Docker Image
+Docker image can be built with `docker` profile.
+
+`mvn clean package -Pdocker`

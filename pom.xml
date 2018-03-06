@@ -68,6 +68,7 @@
                             <contextDirectory>${project.basedir}/</contextDirectory>
                             <repository>finium/keycloak</repository>
                             <tag>${project.version}</tag>
+                            <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
                         </configuration>
                     </plugin>
                 </plugins>

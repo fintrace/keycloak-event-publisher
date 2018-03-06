@@ -67,7 +67,7 @@
                                     <outputDirectory>${project.basedir}/docker</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${build.directory}</directory>
+                                            <directory>${project.build.directory}</directory>
                                             <includes>
                                                 <include>${project.artifactId}-jar-with-dependencies.jar</include>
                                             </includes>

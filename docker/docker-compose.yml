@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  postgres:
+      image: postgres
+      volumes:
+        - ./postgres_data:/var/lib/postgresql
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: password
+      networks:
+        - kc-net
+  keycloak:
+      image: finium/keycloak:1.0.0-SNAPSHOT
+      environment:
+        POSTGRES_ADDR: postgres
+        POSTGRES_DATABASE: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: password
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: Pa55w0rd
+        # Workaround for container using legacy Docker links, resulting in
+        # "WFLYCTL0211: Cannot resolve expression 'jdbc:postgresql://${env.POSTGRES_PORT_5432_TCP_ADDR}...")n
+        POSTGRES_PORT_5432_TCP_ADDR: postgres
+        EVENTS_URL: "http://localhost:8080/fintrace"
+        OPERATIONS_URL: "http://localhost:8080/fintrace"
+      ports:
+        - "8181:8080"
+        - "9990:9990"
+      depends_on:
+        - postgres
+      networks:
+        - kc-net
+
+networks:
+    kc-net:
+        driver: bridge

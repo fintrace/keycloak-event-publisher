@@ -1,1 +1,1 @@
-org.fintrace.keycloak.events.http.HttpEventListenerProviderFactory
+org.fintrace.keycloak.events.EventPublisherProviderFactory

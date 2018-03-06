@@ -40,12 +40,12 @@ public class EventPublisherProviderFactory implements EventListenerProviderFacto
 
         if (this.type == PublisherType.HTTP) {
             this.consumer = new EventsConsumer(
-                    new HttpSender(scope.get("eventsUrl"), scope.get("operationsUrl")));
+                    new HttpSender(scope.get("eventUrl"), scope.get("adminEventUrl")));
         } else {
             this.consumer = new EventsConsumer(new JMSSender(
                     scope.get("jmsConnectionFactory"),
                     scope.get("jmsTopicEvent"),
-                    scope.get("jmsTopicOperationEvent")
+                    scope.get("jmsTopicAdminEvent")
             ));
         }
     }

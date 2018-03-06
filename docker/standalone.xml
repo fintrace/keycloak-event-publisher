@@ -577,15 +577,15 @@
                 <default-provider>http-event-publisher</default-provider>
                 <provider name="event-publisher" enabled="true">
                     <properties>
-                        <property name="eventsUrl" value="${env.EVENTS_URL}"/>
-                        <property name="operationsUrl" value="${env.OPERATIONS_URL}"/>
+                        <property name="eventUrl" value="${env.EVENT_URL}"/>
+                        <property name="adminEventUrl" value="${env.ADMIN_EVENT_URL}"/>
                     </properties>
                     <!--
                     <properties>
                         <property name="type" value="${env.SENDER_TYPE}"/>
                         <property name="jmsConnectionFactory" value="${env.JMS_CONNECTION_FACTORY}"/>
                         <property name="jmsTopicEvent" value="${env.TOPIC_EVENT}"/>
-                        <property name="jmsTopicOperationEvent" value="${env.TOPIC_OPERATION_EVENT}"/>
+                        <property name="jmsTopicAdminEvent" value="${env.TOPIC_ADMIN_EVENT}"/>
                     </properties>
                     -->
                 </provider>

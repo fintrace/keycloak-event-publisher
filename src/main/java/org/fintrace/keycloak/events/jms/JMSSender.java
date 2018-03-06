@@ -25,21 +25,21 @@ import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 @JBossLog
 public class JMSSender implements EventPublisher {
     private final TopicConnectionFactory connectionFactory;
-    private final Topic eventDestinationTopic;
-    private final Topic adminEventDestinationTopic;
+    private final Topic eventTopic;
+    private final Topic adminEventTopic;
     private final ObjectMapper mapper;
 
     /**
-     * @param connectionFactory
-     * @param eventTopic
-     * @param operationsEventTopic
+     * @param connectionFactory JNDI connection factory
+     * @param eventTopic        JNDI topic for event
+     * @param adminEventTopic   JNDI topic for admin event
      */
-    public JMSSender(String connectionFactory, String eventTopic, String operationsEventTopic) {
+    public JMSSender(String connectionFactory, String eventTopic, String adminEventTopic) {
         try {
             Context ctx = new InitialContext();
             this.connectionFactory = (TopicConnectionFactory) ctx.lookup(connectionFactory);
-            this.eventDestinationTopic = (Topic) ctx.lookup(eventTopic);
-            this.adminEventDestinationTopic = (Topic) ctx.lookup(operationsEventTopic);
+            this.eventTopic = (Topic) ctx.lookup(eventTopic);
+            this.adminEventTopic = (Topic) ctx.lookup(adminEventTopic);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +52,7 @@ public class JMSSender implements EventPublisher {
     @Override
     public boolean sendEvent(Event event) {
         try {
-            return sendAndAcknowledge(mapper.writeValueAsString(event), eventDestinationTopic);
+            return sendAndAcknowledge(mapper.writeValueAsString(event), eventTopic);
         } catch (JsonProcessingException e) {
             log.error("error writing JSON for event", e);
         }
@@ -65,7 +65,7 @@ public class JMSSender implements EventPublisher {
     @Override
     public boolean sendEvent(AdminEvent adminEvent) {
         try {
-            return sendAndAcknowledge(mapper.writeValueAsString(adminEvent), adminEventDestinationTopic);
+            return sendAndAcknowledge(mapper.writeValueAsString(adminEvent), adminEventTopic);
         } catch (JsonProcessingException e) {
             log.error("error writing JSON for admin event", e);
         }

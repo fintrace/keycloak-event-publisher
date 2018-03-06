@@ -9,12 +9,16 @@ import org.keycloak.events.admin.AdminEvent;
 public interface EventPublisher {
 
     /**
-     * @return
+     * publishes event
+     *
+     * @return true if operation is successful otherwise false
      */
     boolean sendEvent(Event event);
 
     /**
-     * @return
+     * publishes admin event
+     *
+     * @return true if operation is successful otherwise false
      */
     boolean sendEvent(AdminEvent adminEvent);
 }

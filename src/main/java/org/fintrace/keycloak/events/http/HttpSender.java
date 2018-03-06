@@ -19,17 +19,17 @@ import static org.apache.http.entity.ContentType.APPLICATION_JSON;
  */
 @JBossLog
 public class HttpSender implements EventPublisher {
-    private final String eventsUrl;
-    private final String operationsUrl;
+    private final String eventUrl;
+    private final String adminEventUrl;
     private final ObjectMapper mapper;
 
     /**
-     * @param eventsUrl
-     * @param operationsUrl
+     * @param eventUrl
+     * @param adminEventUrl
      */
-    public HttpSender(String eventsUrl, String operationsUrl) {
-        this.eventsUrl = eventsUrl;
-        this.operationsUrl = operationsUrl;
+    public HttpSender(String eventUrl, String adminEventUrl) {
+        this.eventUrl = eventUrl;
+        this.adminEventUrl = adminEventUrl;
         this.mapper = new ObjectMapper();
     }
 
@@ -39,7 +39,7 @@ public class HttpSender implements EventPublisher {
     @Override
     public boolean sendEvent(Event event) {
         try {
-            Response response = Request.Post(eventsUrl)
+            Response response = Request.Post(eventUrl)
                     .bodyString(mapper.writeValueAsString(event), APPLICATION_JSON).execute();
             return isSuccessResponse(response.returnResponse().getStatusLine());
         } catch (IOException e) {
@@ -54,7 +54,7 @@ public class HttpSender implements EventPublisher {
     @Override
     public boolean sendEvent(AdminEvent adminEvent) {
         try {
-            Response response = Request.Post(operationsUrl)
+            Response response = Request.Post(adminEventUrl)
                     .bodyString(mapper.writeValueAsString(adminEvent), APPLICATION_JSON).execute();
             return isSuccessResponse(response.returnResponse().getStatusLine());
         } catch (IOException e) {

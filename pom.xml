@@ -65,7 +65,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <contextDirectory>${project.basedir}/docker</contextDirectory>
+                            <contextDirectory>${project.basedir}/</contextDirectory>
                             <repository>finium/keycloak</repository>
                             <tag>${project.version}</tag>
                         </configuration>

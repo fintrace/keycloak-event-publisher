@@ -1,0 +1,8 @@
+language: java
+script: "mvn clean package -Pdocker"
+
+deploy:
+  provider: script
+  script: bash docker/docker_push
+  on:
+    branch: master

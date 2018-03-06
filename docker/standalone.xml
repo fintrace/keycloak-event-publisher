@@ -574,8 +574,8 @@
                 <provider name="default" enabled="true"/>
             </spi>
             <spi name="eventsListener">
-                <default-provider>http-event-publisher</default-provider>
-                <provider name="event-publisher" enabled="true">
+                <default-provider>event-publisher</default-provider>
+                <provider name="event-publisher">
                     <properties>
                         <property name="eventUrl" value="${env.EVENT_URL}"/>
                         <property name="adminEventUrl" value="${env.ADMIN_EVENT_URL}"/>
@@ -589,7 +589,6 @@
                     </properties>
                     -->
                 </provider>
-                <provider name="jboss-logging" enabled="true"/>
             </spi>
         </subsystem>
     </profile>

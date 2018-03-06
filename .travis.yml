@@ -1,8 +1,11 @@
 language: java
-script: "mvn clean package -Pdocker -X"
+script: "mvn clean package -Pdocker"
 
-deploy:
-  provider: script
-  script: cd docker && bash docker_push.sh
-  on:
-    branch: master
+after_success:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - export REPO=finium/keycloak
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO

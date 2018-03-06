@@ -1,5 +1,5 @@
 language: java
-script: "mvn clean package -Pdocker"
+script: "mvn clean package -Pdocker -X"
 
 deploy:
   provider: script

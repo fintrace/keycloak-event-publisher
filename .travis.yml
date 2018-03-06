@@ -3,6 +3,6 @@ script: "mvn clean package -Pdocker"
 
 deploy:
   provider: script
-  script: cd docker && bash docker_push
+  script: cd docker && bash docker_push.sh
   on:
     branch: master

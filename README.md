@@ -1,6 +1,8 @@
 # keycloak-event-publisher
 Keycloak event listener provider implementation with multiple sender options.
 
+[![Build Status](https://travis-ci.org/finium-source/keycloak-event-publisher.svg?branch=master)](https://travis-ci.org/finium-source/keycloak-event-publisher)
+
 ### Features
 * Multiple Publisher types
     * HTTP

@@ -4,14 +4,6 @@ sudo: false
 script: "mvn clean package -Pdocker"
 
 after_success:
-if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
-    echo "This is a pull request. No deployment will be done."
-    exit 0
-fi
-if [[ "$TRAVIS_BRANCH" != "master" ]]; then
-    echo "Pushed on a branch other than master. No deployment will be done."
-    exit 0
-fi
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - export APP_VERSION=1.0.0-SNAPSHOT
   - export REPO=finium/keycloak

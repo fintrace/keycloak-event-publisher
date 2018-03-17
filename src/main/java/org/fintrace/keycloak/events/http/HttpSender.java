@@ -15,7 +15,7 @@ import java.io.IOException;
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
 /**
- * @author Venkaiah Chowdary Koneru
+ * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
  */
 @JBossLog
 public class HttpSender implements EventPublisher {
@@ -39,11 +39,14 @@ public class HttpSender implements EventPublisher {
     @Override
     public boolean sendEvent(Event event) {
         try {
+            if (log.isDebugEnabled()) {
+                log.debugf("Event: %s", mapper.writeValueAsString(event));
+            }
             Response response = Request.Post(eventUrl)
                     .bodyString(mapper.writeValueAsString(event), APPLICATION_JSON).execute();
             return isSuccessResponse(response.returnResponse().getStatusLine());
         } catch (IOException e) {
-            log.error("error sending event.will retry", e);
+            log.error("error sending event. Will retry", e);
         }
         return false;
     }
@@ -54,11 +57,14 @@ public class HttpSender implements EventPublisher {
     @Override
     public boolean sendEvent(AdminEvent adminEvent) {
         try {
+            if (log.isDebugEnabled()) {
+                log.debugf("AdminEvent: %s", mapper.writeValueAsString(adminEvent));
+            }
             Response response = Request.Post(adminEventUrl)
                     .bodyString(mapper.writeValueAsString(adminEvent), APPLICATION_JSON).execute();
             return isSuccessResponse(response.returnResponse().getStatusLine());
         } catch (IOException e) {
-            log.error("error sending admin event.will retry", e);
+            log.error("error sending admin event. Will retry", e);
         }
         return false;
     }

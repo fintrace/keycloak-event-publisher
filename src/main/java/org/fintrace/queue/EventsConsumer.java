@@ -28,6 +28,7 @@ public class EventsConsumer {
     public EventsConsumer(EventPublisher publisher) {
         this.publisher = publisher;
         this.executorService = Executors.newSingleThreadScheduledExecutor();
+        log.info("Initialized a simple events consumer to consume keycloak events from queue");
 
     }
 
@@ -45,9 +46,9 @@ public class EventsConsumer {
     public void shutdown() {
         isShutdownRequested = true;
         executorService.shutdown();
-        if (log.isDebugEnabled()) {
-            log.debug("Shutdown has been requested. Will shutdown once the processing has been completed");
-        }
+
+        log.info("Shutdown has been requested. Will shutdown once the processing has been completed");
+
 
         while (!executorService.isTerminated()) {
             try {
@@ -66,11 +67,14 @@ public class EventsConsumer {
      */
     private void handleEvent() {
         while (!isShutdownRequested) {
+            if (log.isTraceEnabled()) {
+                log.trace("inside handle event");
+            }
             KeycloakEvent event = QueueHolder.getQueue().peek();
             if (event != null) {
                 if (log.isTraceEnabled()) {
                     log.tracef("received %s", event.getEvent());
-                }
+               }
                 boolean isAdminEvent = event.getEvent() instanceof AdminEvent;
                 if (isAdminEvent) {
                     if (!publisher.sendEvent((AdminEvent) event.getEvent())) {
@@ -80,7 +84,6 @@ public class EventsConsumer {
                     continue;
                 }
                 QueueHolder.getQueue().remove();
-
             }
         }
     }

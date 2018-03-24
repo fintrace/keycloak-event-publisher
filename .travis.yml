@@ -9,7 +9,7 @@ cache:
 sudo: false
 script: mvn clean package -Pdocker
 after_success:
-  - if [["$TRAVIS_BRANCH" == "master"]]; then
+  - if ["$TRAVIS_BRANCH" == "master"]; then
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
         export APP_VERSION="1.0.0-SNAPSHOT";
         export REPO="finium/keycloak";
@@ -17,9 +17,9 @@ after_success:
         docker tag $REPO:$APP_VERSION $REPO:$DOCKER_TAG;
         docker push $REPO:$DOCKER_TAG;
     fi
-  - if [[ -n "$TRAVIS_TAG"]]; then
-        openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.kbx.enc -out $GPG_DIR/pubring.kbx -d
-        mvn deploy -B -U --settings $GPG_DIR/settings.xml -DperformRelease=true -DskipTests=true
+  - if [ -n "$TRAVIS_TAG"]; then
+        openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.kbx.enc -out $GPG_DIR/pubring.kbx -d;
+        mvn deploy -B -U --settings $GPG_DIR/settings.xml -DperformRelease=true -DskipTests=true;
         exit $?
     fi
 env:

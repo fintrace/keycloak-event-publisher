@@ -4,7 +4,7 @@ jdk:
 cache:
   directories:
     - "$HOME/.m2"
-script: mvn clean install -B -U -Pdocker
+script: mvn clean install -U -Pdocker
 after_success:
   - "$DOCKER_DIR/docker_push.sh"
   - "$GPG_DIR/publish.sh"

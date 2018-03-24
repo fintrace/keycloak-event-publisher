@@ -20,7 +20,7 @@
 package org.fintrace.keycloak;
 
 /**
- * @author Venkaiah Chowdary Koneru
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 public final class ProviderConstants {
 

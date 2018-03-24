@@ -23,7 +23,7 @@ import org.keycloak.events.Event;
 import org.keycloak.events.admin.AdminEvent;
 
 /**
- * @author Venkaiah Chowdary Koneru
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 public interface EventPublisher {
 

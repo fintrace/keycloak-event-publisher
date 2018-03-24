@@ -20,7 +20,7 @@
 package org.fintrace.keycloak.events;
 
 /**
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 public enum PublisherType {
     HTTP, JMS

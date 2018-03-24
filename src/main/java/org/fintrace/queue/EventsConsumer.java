@@ -35,7 +35,7 @@ import static org.fintrace.keycloak.ProviderConstants.EXECUTOR_DELAY_SECONDS;
  * consumer of in-memory queue. based on the EventPublisher type,
  * further processing of the events will be done.
  *
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 @JBossLog
 public class EventsConsumer {

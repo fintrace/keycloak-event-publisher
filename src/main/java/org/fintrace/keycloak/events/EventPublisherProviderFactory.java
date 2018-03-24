@@ -32,7 +32,7 @@ import org.keycloak.models.KeycloakSessionFactory;
 import static org.fintrace.keycloak.ProviderConstants.*;
 
 /**
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 @JBossLog
 public class EventPublisherProviderFactory implements EventListenerProviderFactory {

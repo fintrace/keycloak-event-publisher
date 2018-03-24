@@ -31,7 +31,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 @JBossLog
 public class EventPublisherProvider implements EventListenerProvider {

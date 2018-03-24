@@ -30,7 +30,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  * In-memory blocking queue which will hold the events at first place and
  * then can be queried for processing.
  *
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class QueueHolder {

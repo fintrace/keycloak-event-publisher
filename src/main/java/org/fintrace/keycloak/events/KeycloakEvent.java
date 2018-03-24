@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author <a href="mailto:koneru.chowdary@gmail.com">Venkaiah Chowdary Koneru</a>
  */
 @AllArgsConstructor
 @Data

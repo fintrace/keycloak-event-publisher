@@ -4,6 +4,7 @@ jdk:
 cache:
   directories:
     - "$HOME/.m2"
+sudo: false
 script: mvn clean install -U -Pdocker
 after_success:
   - "$DOCKER_DIR/docker_push.sh"

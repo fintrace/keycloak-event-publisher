@@ -24,8 +24,8 @@ services:
         # "WFLYCTL0211: Cannot resolve expression 'jdbc:postgresql://${env.POSTGRES_PORT_5432_TCP_ADDR}...")n
         POSTGRES_PORT_5432_TCP_ADDR: postgres
         SENDER_TYPE: "HTTP"
-        EVENT_URL: "http://localhost:8080/fintrace/api/keycloak/event"
-        ADMIN_EVENT_URL: "http://localhost:8080/fintrace/api/keycloak/adminevent"
+        EVENT_URL: "http://localhost:8080/api/keycloak/event"
+        ADMIN_EVENT_URL: "http://localhost:8080/api/keycloak/adminevent"
         # SENDER_TYPE: "JMS"
         # JMS_CONNECTION_FACTORY: "java:/jms/KeycloakBusConnectionFactory"
         # JMS_TOPIC_EVENT: "java:/jms/topic/KeycloakEvents"

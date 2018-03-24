@@ -17,11 +17,25 @@
  * under the License.
  */
 
-package org.fintrace.keycloak.events;
+package org.fintrace.keycloak;
 
 /**
- * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
+ * @author Venkaiah Chowdary Koneru
  */
-public enum PublisherType {
-    HTTP, JMS
+public final class ProviderConstants {
+
+    public static final String PUBLISHER_TYPE = "type";
+    public static final String JMS_CONNECTION_FACTORY = "jmsConnectionFactory";
+    public static final String JMS_EVENT_TOPIC = "jmsTopicEvent";
+    public static final String JMS_ADMIN_EVENT_TOPIC = "jmsTopicAdminEvent";
+    public static final String URL_EVENT = "eventUrl";
+    public static final String URL_ADMIN_EVENT = "adminEventUrl";
+    public static final String PROVIDER_NAME = "event-publisher";
+    public static final int EXECUTOR_DELAY_SECONDS = 90;
+
+    /**
+     * to prevent un-necessary instantiation
+     */
+    private ProviderConstants() {
+    }
 }

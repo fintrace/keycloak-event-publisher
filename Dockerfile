@@ -1,4 +1,4 @@
-FROM jboss/keycloak:3.4.3.Final
+FROM jboss/keycloak:4.0.0.Beta1
 
 ADD target/keycloak-event-publisher-jar-with-dependencies.jar /opt/jboss/keycloak/providers/
 

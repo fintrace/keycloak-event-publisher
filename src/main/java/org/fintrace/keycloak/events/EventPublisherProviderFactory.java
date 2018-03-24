@@ -1,3 +1,22 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.fintrace.keycloak.events;
 
 import lombok.extern.jbosslog.JBossLog;
@@ -5,12 +24,12 @@ import org.fintrace.keycloak.events.http.HttpSender;
 import org.fintrace.keycloak.events.jms.JMSSender;
 import org.fintrace.queue.EventsConsumer;
 import org.keycloak.Config;
-import org.keycloak.events.Event;
 import org.keycloak.events.EventListenerProvider;
 import org.keycloak.events.EventListenerProviderFactory;
-import org.keycloak.events.admin.AdminEvent;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
+
+import static org.fintrace.keycloak.ProviderConstants.*;
 
 /**
  * @author Venkaiah Chowdary Koneru <koneru.chowdary@gmail.com>
@@ -37,8 +56,8 @@ public class EventPublisherProviderFactory implements EventListenerProviderFacto
     public void init(Config.Scope scope) {
         log.info("Setting up Event publisher provider factory");
 
-        if (scope.get("type") != null) {
-            this.type = PublisherType.valueOf(scope.get("type"));
+        if (scope.get(PUBLISHER_TYPE) != null) {
+            this.type = PublisherType.valueOf(scope.get(PUBLISHER_TYPE));
         }
 
         if (log.isTraceEnabled()) {
@@ -47,13 +66,13 @@ public class EventPublisherProviderFactory implements EventListenerProviderFacto
 
         if (this.type == PublisherType.JMS) {
             this.consumer = new EventsConsumer(new JMSSender(
-                    scope.get("jmsConnectionFactory"),
-                    scope.get("jmsTopicEvent"),
-                    scope.get("jmsTopicAdminEvent")
+                    scope.get(JMS_CONNECTION_FACTORY),
+                    scope.get(JMS_EVENT_TOPIC),
+                    scope.get(JMS_ADMIN_EVENT_TOPIC)
             ));
         } else {
             this.consumer = new EventsConsumer(
-                    new HttpSender(scope.get("eventUrl"), scope.get("adminEventUrl")));
+                    new HttpSender(scope.get(URL_EVENT), scope.get(URL_ADMIN_EVENT)));
         }
 
         this.eventPublisher = new EventPublisherProvider();
@@ -80,6 +99,6 @@ public class EventPublisherProviderFactory implements EventListenerProviderFacto
      */
     @Override
     public String getId() {
-        return "event-publisher";
+        return PROVIDER_NAME;
     }
 }
